@@ -2,11 +2,9 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-
         <q-toolbar-title class="absolute-center">
-          QuasarChat
+          {{ title }}
         </q-toolbar-title>
-
       </q-toolbar>
     </q-header>
 
@@ -20,15 +18,20 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'MainLayout',
-
-  components: {
-  },
+  components: {},
 
   data() {
-    return {
-    }
+    return {};
   },
 
+  computed: {
+    title() {
+      return this.$route.fullPath === '/'
+        ? 'QuasarChat'
+        : this.$route.fullPath === '/chat'
+        ? 'Chat'
+        : 'Login';
+    },
+  },
 });
 </script>
