@@ -1,26 +1,28 @@
 <template>
-  <q-page class="row">
-    <q-list bordered>
+  <q-page class="row q-pa-lg">
+    <q-list separator class="full-width">
       <q-item
         v-for="user in users"
         :key="user.id"
-        class="q-my-sm"
+        class="row justify-center"
         clickable
         v-ripple
+        to="/chat"
       >
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white">
-            {{ user.letter }}
+            {{ user.name[0] }}
           </q-avatar>
         </q-item-section>
 
         <q-item-section>
           <q-item-label>{{ user.name }}</q-item-label>
-          <q-item-label caption lines="1">{{ user.email }}</q-item-label>
         </q-item-section>
 
         <q-item-section side>
-          <q-icon name="chat_bubble" color="green" />
+          <q-badge :color="user.isOnline ? 'blue-12' : 'grey-6'">
+            {{ user.isOnline ? 'Online' : 'Offline' }}
+          </q-badge>
         </q-item-section>
       </q-item>
     </q-list>
@@ -36,27 +38,23 @@ export default defineComponent({
       users: [
         {
           id: 1,
-          name: 'Ruddy Jedrzej',
-          email: 'rjedrzej0@discuz.net',
-          letter: 'R',
+          name: 'Michel',
+          isOnline: true,
         },
         {
           id: 2,
-          name: 'Mallorie Alessandrini',
-          email: 'malessandrini1@marketwatch.com',
-          letter: 'M',
+          name: 'Martin',
+          isOnline: true,
         },
         {
           id: 3,
-          name: 'Elisabetta Wicklen',
-          email: 'ewicklen2@microsoft.com',
-          letter: 'E',
+          name: 'Steven',
+          isOnline: false,
         },
         {
           id: 4,
-          name: 'Seka Fawdrey',
-          email: 'sfawdrey3@wired.com',
-          letter: 'S',
+          name: 'Helen',
+          isOnline: true,
         },
       ],
     };
