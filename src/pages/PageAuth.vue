@@ -18,6 +18,14 @@
 
       <q-tab-panels v-model="tab" animated class="q-pt-md">
         <q-tab-panel name="login">
+          <login-register :tab="tab"></login-register>
+        </q-tab-panel>
+
+        <q-tab-panel name="register">
+          <login-register :tab="tab"></login-register>
+        </q-tab-panel>
+
+        <!-- <q-tab-panel name="login">
           <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-lg">
             <q-input
               filled
@@ -96,7 +104,7 @@
               />
             </div>
           </q-form>
-        </q-tab-panel>
+        </q-tab-panel> -->
       </q-tab-panels>
     </q-card>
   </q-page>
@@ -104,33 +112,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import LoginRegister from 'src/components/LoginRegister.vue';
 
 export default defineComponent({
+  components: {
+    LoginRegister,
+  },
   data() {
     return {
       tab: 'login',
-      name: '',
-      email: '',
-      password: '',
-      accept: false,
     };
-  },
-  methods: {
-    onSubmit() {
-      this.$q.notify({
-        color: 'green-4',
-        textColor: 'white',
-        icon: 'cloud_done',
-        message: 'Submitted',
-      });
-    },
-
-    onReset() {
-      this.name = '';
-      this.email = '';
-      this.password = '';
-      this.accept = false;
-    },
   },
 });
 </script>
